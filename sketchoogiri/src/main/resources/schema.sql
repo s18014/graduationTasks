@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS theme (
   user_id VARCHAR(255) NOT NULL,
   request VARCHAR(255) NOT NULL,
   img_url VARCHAR NOT NULL,
-  posted_date DATE NOT NULL,
+  posted_time TIMESTAMP NOT NULL,
   PRIMARY KEY (theme_id)
 )/;
 
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS answer (
   user_id VARCHAR(255) NOT NULL,
   description VARCHAR(255) NOT NULL,
   img_url VARCHAR NOT NULL,
-  posted_date DATE NOT NULL,
+  posted_time TIMESTAMP NOT NULL,
   PRIMARY KEY (answer_id)
 )/;
 
