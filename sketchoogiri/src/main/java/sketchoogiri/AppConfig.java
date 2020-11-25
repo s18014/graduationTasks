@@ -2,6 +2,7 @@ package sketchoogiri;
 
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
@@ -13,9 +14,11 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan("com.example.domain")
+// @ComponentScan("com.example.domain")
+@ComponentScan("sketchoogiri.domain")
 @EnableTransactionManagement
-@MapperScan("com.example.domain.mapper")
+// @MapperScan("com.example.domain.mapper")
+@MapperScan("sketchoogiri.domain.mapper")
 public class AppConfig {
 	
 	// 多分データソースはapplication.propatiesのdatasourceをDIしてくれる
@@ -25,11 +28,11 @@ public class AppConfig {
 	}
 	
 	@Bean
-	public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) {
-		SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
-		sessionFactoryBean.setDataSource(dataSource);
-		sessionFactoryBean.setConfigLocation(
+	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+		sessionFactory.setDataSource(dataSource);
+		sessionFactory.setConfigLocation(
 				new ClassPathResource("/mybatis-config.xml"));
-		return sessionFactoryBean;
+		return sessionFactory.getObject();
 	}
 }

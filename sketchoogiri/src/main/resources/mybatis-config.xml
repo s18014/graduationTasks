@@ -8,6 +8,6 @@
 		<setting name="defaultFetchSize" value="100" />
 	</settings>
 	<typeAliases>
-		<package name="com.example.domain.model" />
+		<package name="sketchoogiri.domain.model" />
 	</typeAliases>
 </configuration>

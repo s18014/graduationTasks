@@ -21,6 +21,14 @@ INSERT INTO theme(theme_id, user_id, request, img_url, posted_time) VALUES(
 	'dummy',
 	'2020-01-01 00:00:00'
 )/;
+INSERT INTO theme(theme_id, user_id, request, img_url, posted_time) VALUES(
+	'2',
+	'hentai',
+	'もっとエロくして',
+	'dummy',
+	'2020-01-01 00:01:00'
+)/;
+
 -- 回答
 INSERT INTO answer(answer_id, theme_id, user_id, description, img_url, posted_time) VALUES(
 	'1',
@@ -28,5 +36,23 @@ INSERT INTO answer(answer_id, theme_id, user_id, description, img_url, posted_ti
 	'gentleman',
 	'エロくした',
 	'dummy',
-	'2020-01-01 00:00:5'
+	'2020-01-01 00:00:50'
+)/;
+
+INSERT INTO answer(answer_id, theme_id, user_id, description, img_url, posted_time) VALUES(
+	'2',
+	'2',
+	'gentleman',
+	'もっとエロくした',
+	'dummy',
+	'2020-01-01 00:01:50'
+)/;
+
+INSERT INTO answer(answer_id, theme_id, user_id, description, img_url, posted_time) VALUES(
+	'3',
+	'2',
+	'gentleman',
+	'さらにもっとエロくした',
+	'dummy',
+	'2020-01-01 00:02:50'
 )/;

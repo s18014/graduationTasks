@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sketchoogiri.domain.mapper.ThemeMapper">
+    <select id="selectAll" resultType="sketchoogiri.domain.model.Theme">
+        select
+        	theme_id as themeId,
+        	user_id as userId,
+        	request,
+        	img_url as imgUrl,
+        	posted_time as postedTime
+        from theme
+    </select>
+</mapper>
