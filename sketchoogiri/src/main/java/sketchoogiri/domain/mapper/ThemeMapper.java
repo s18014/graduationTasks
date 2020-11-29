@@ -8,5 +8,11 @@ import sketchoogiri.domain.model.Theme;
 
 @Mapper
 public interface ThemeMapper {
-	public List<Theme> selectAll();
+	public Theme findByThemeId(String themeId);
+	public List<Theme> findByUserId(String userId);
+	public List<Theme> findAll();
+	
+	public void create(Theme theme);
+	
+	public void delete(String themeId);
 }

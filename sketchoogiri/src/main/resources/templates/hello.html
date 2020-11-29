@@ -6,6 +6,44 @@
 </head>
 <body>
 <p>hello</p>
-<span th:text="${themes[0].request}">request</span>
+<table>
+	<p>全てのお題</p>
+	<tr>
+		<th>theme id</th><th>user id</th><th>request</th><th>img url</th><th>posted time</th>
+	</tr>
+	<tr th:each="theme : ${themeAll}">
+		<td th:text="${theme.themeId}"></td>
+		<td th:text="${theme.userId}"></td>
+		<td th:text="${theme.request}"></td>
+		<td th:text="${theme.imgUrl}"></td>
+		<td th:text="${theme.postedTime}"></td>
+	</tr>
+</table>
+
+<table>
+	<p>Hentaiが投稿したお題</p>
+	<tr>
+		<th>theme id</th><th>user id</th><th>request</th><th>img url</th><th>posted time</th>
+	</tr>
+	<tr th:each="theme : ${themeOfUser}">
+		<td th:text="${theme.themeId}"></td>
+		<td th:text="${theme.userId}"></td>
+		<td th:text="${theme.request}"></td>
+		<td th:text="${theme.imgUrl}"></td>
+		<td th:text="${theme.postedTime}"></td>
+	</tr>
+</table>
+
+<P>お題を追加</P>
+<form th:action="@{/}" th:object="${themeForm}" method="POST">
+	<div>
+		<span th:if="${#fields.hasErrors('request')}" th:errors="*{request}" style="color: red">error</span><br />
+		<input type="text" name="text" th:field="*{request}" />
+	</div>
+	<div>
+		<button type="submit">追加</button>
+	</div>
+</form>
+
 </body>
 </html>
