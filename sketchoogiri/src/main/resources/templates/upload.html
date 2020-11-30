@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
+            <input type="file" name="file" >
+            <button type="submit">アップロード機能を使う</button>
+        </form>
+        <img th:if="${filepath}" th:src="@{{filename}(filename=${filepath})}" width="320"/>
+    </div>
+</body>
+</html>
