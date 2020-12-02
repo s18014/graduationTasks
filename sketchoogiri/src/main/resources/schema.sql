@@ -6,13 +6,13 @@ CREATE TABLE IF NOT EXISTS usr (
   user_id VARCHAR(255) NOT NULL,
   name VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
-  role_name VARCHAR(255) NOT NULL,
+  role VARCHAR(255) NOT NULL,
   PRIMARY KEY (user_id)
 )/;
 
 
 CREATE TABLE IF NOT EXISTS theme (
-  theme_id VARCHAR(255) NOT NULL,
+  theme_id SERIAL NOT NULL,
   user_id VARCHAR(255) NOT NULL,
   request VARCHAR(255) NOT NULL,
   img_url VARCHAR NOT NULL,
@@ -21,8 +21,8 @@ CREATE TABLE IF NOT EXISTS theme (
 )/;
 
 CREATE TABLE IF NOT EXISTS answer (
-  answer_id VARCHAR(255) NOT NULL,
-  theme_id VARCHAR(255) NOT NULL,
+  answer_id SERIAL NOT NULL,
+  theme_id SERIAL NOT NULL,
   user_id VARCHAR(255) NOT NULL,
   description VARCHAR(255) NOT NULL,
   img_url VARCHAR NOT NULL,

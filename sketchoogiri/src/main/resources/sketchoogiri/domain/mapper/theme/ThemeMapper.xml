@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sketchoogiri.domain.mapper.theme.ThemeMapper">
+   <select id="findAll" resultMap="themeResultMap">
+        select
+        	theme_id,
+        	user_id,
+        	request,
+        	img_url,
+        	posted_time
+        from theme
+    </select>
+    
+    <select id="findByThemeId" resultMap="themeResultMap">
+    	select
+        	theme_id,
+        	user_id,
+        	request,
+        	img_url,
+        	posted_time
+       from theme
+       where theme_id = #{themeId}
+    </select>
+    
+    <select id="findByUserId" resultMap="themeResultMap">
+    	select
+        	theme_id,
+        	user_id,
+        	request,
+        	img_url,
+        	posted_time
+       from theme
+       where user_id = #{userId}
+    </select>
+    
+    <insert id="create" parameterType="Theme">
+    	insert into theme (user_id, request, img_url, posted_time)
+    	values (#{userId}, #{request}, #{imgUrl}, current_timestamp)
+    </insert>
+    
+   	<resultMap id="themeResultMap" type="sketchoogiri.domain.model.Theme">
+		<id property="themeId" column="theme_id" />
+		<result property="userId" column="user_id" />
+		<result property="request" column="request" />
+		<result property="imgUrl" column="img_url" />
+		<result property="postedTime" column="posted_time" />
+	</resultMap>
+</mapper>
