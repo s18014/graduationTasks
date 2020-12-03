@@ -8,6 +8,6 @@ import sketchoogiri.domain.model.User;
 
 @Mapper
 public interface UserMapper {
-	public User findByUserId(Integer userId);
+	public User findByUserId(String userId);
 	public List<User> findAll();
 }

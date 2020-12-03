@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<h1>Test</h1>
+	<h2>ようこそ <span th:text="${loginUser.name}"></span> さん!</h2>
+	<ul>
+		<li>
+			<a th:href="@{/}">トップへ</a>
+		</li>
+	</ul>
+	<div>
+		<h3>投稿したお題一覧</h3>
+		<table>
+			<tr><th>お題</th><th>画像</th></tr>
+			<tr th:each="theme : ${themes}">
+				<td th:text="${theme.request}"></td>
+				<td><img th:src="${theme.imgUrl}" width=300 /></td>
+			</tr>
+		</table>
+	</div>
+	
+</body>
+</html>
