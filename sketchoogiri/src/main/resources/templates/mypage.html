@@ -5,11 +5,14 @@
 <title></title>
 </head>
 <body>
-	<h1>Test</h1>
+	<h1>My page</h1>
 	<h2>ようこそ <span th:text="${loginUser.name}"></span> さん!</h2>
 	<ul>
 		<li>
 			<a th:href="@{/}">トップへ</a>
+		</li>
+		<li>
+			<a th:href="@{/theme/upload}">投稿</a>
 		</li>
 	</ul>
 	<div>

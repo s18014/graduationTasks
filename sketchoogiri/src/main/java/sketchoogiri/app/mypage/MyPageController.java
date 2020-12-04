@@ -24,7 +24,7 @@ public class MyPageController {
 	
 	@Autowired
 	UserMapper userMapper;
-
+	
 	@GetMapping
 	public String mypage(Model model) {
 		User loginUser = dummyUser();

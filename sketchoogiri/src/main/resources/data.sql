@@ -17,13 +17,13 @@ INSERT INTO usr(user_id, name, password, role) VALUES(
 INSERT INTO theme(user_id, request, img_url, posted_time) VALUES(
 	'hentai',
 	'エロくして',
-	'/images/20201130234739002.png',
+	'dummy',
 	'2020-01-01 00:00:00'
 )/;
 INSERT INTO theme(user_id, request, img_url, posted_time) VALUES(
 	'hentai',
 	'もっとエロくして',
-	'/images/20201201103739315.png',
+	'dummy',
 	'2020-01-01 00:01:00'
 )/;
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<h1>投稿用フォーム</h1>
+	<ul>
+		<li>
+			<a th:href="@{/mypage}">トップへ</a>
+		</li>
+	</ul>
+	<div>
+		<p>お題を投稿する</p>
+		<form th:action="@{/theme/upload}" method="post" enctype="multipart/form-data" th:object="${themeForm}">
+			<input type="file" th:field="*{image}"/>
+			<br />
+			<input placeholder="リクエスト" type="text" th:field="*{request}"/>
+			<span th:if="${#fields.hasErrors('request')}" th:errors="*{request}" style="color: red">error!</span>
+			<br />
+			<button type="submit">投稿</button>
+		</form>
+	</div>
+</body>
+</html>
