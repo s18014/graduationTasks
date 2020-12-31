@@ -17,6 +17,8 @@
 			<input type="file" th:field="*{image}"/>
 			<br />
 			<input placeholder="リクエスト" type="text" th:field="*{request}"/>
+			<a href="/sketch?redirect-url=/theme/upload">お絵描き</a>
+			<span th:if="${image}" th:value="${image}"></span>
 			<span th:if="${#fields.hasErrors('request')}" th:errors="*{request}" style="color: red">error!</span>
 			<br />
 			<button type="submit">投稿</button>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title></title>
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet" />
+    <link href="css/monolith.min.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <main>
+      <div id="canvas-container">
+      <div id="canvas-wrapper">
+      </div>
+      </div>
+      <img id="preview"/>
+      <!-- side menu -->
+      <div id="side-menu">
+
+        <div id="focus-center" class="side-menu-icon">
+          <div>
+            <p>中央</p>
+          </div>
+        </div>
+
+
+        <div id="drag-mode" class="side-menu-icon">
+          <div>
+            <p>操作</p>
+          </div>
+        </div>
+
+        <div id="draw-mode" class="side-menu-icon">
+          <div>
+            <p>描く</p>
+          </div>
+        </div>
+
+        <div id="eraser-mode" class="side-menu-icon">
+          <div>
+            <p>消す</p>
+          </div>
+        </div>
+
+        <div id="undo" class="side-menu-icon">
+          <div>
+            <p>◁</p>
+          </div>
+        </div>
+
+        <div id="redo" class="side-menu-icon">
+          <div>
+            <p>▷</p>
+          </div>
+        </div>
+
+        <div class="side-menu-icon">
+        </div>
+
+        <div id="save-canvas" class="side-menu-icon">
+          <div>
+            <p>保存</p>
+          </div>
+        </div>
+
+        <div class="side-menu-icon">
+          <label for="select-image">
+            画像
+            <input type="file" id="select-image" accept="image/*" />
+          </label>
+        </div>
+
+        <div class="side-menu-icon">
+          <form id="send-sketch" th:action='@{/sketch}' method="post" th:object="${sketchForm}">
+            <label for="complite">
+              完了
+              <input type="hidden" id="redirect-url" name="redirectUrl" th:value="${redirectUrlParam}">
+              <input type="submit" id="complite" name="complite">
+            </label>
+          </form>
+        </div>
+
+      </div>
+      <!-- side menu -->
+      <div id="top-menu">
+        <div id="palette-pen-menu-container" class="top-menu-container">
+          <div class="top-menu-icon">
+            <label for="palette-pen-thickness">8px</label>
+            <input type="range" id="palette-pen-thickness" min="1" value="8" style="width:150px;height:25px;padding:0px;margin:0px;" step="1" max="120">
+          </div>
+          <div class="pickr-container top-menu-icon">
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="js/pickr.es5.min.js"></script>
+    <script src="js/p5.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+  </html>
