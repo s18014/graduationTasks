@@ -13,6 +13,7 @@
 	</ul>
 	<div>
 		<p>お題を投稿する</p>
+		<img th:if="${image}" th:src="${image}" width=300/>
 		<form th:action="@{/theme/upload}" method="post" enctype="multipart/form-data" th:object="${themeForm}">
 			<input type="file" th:field="*{image}"/>
 			<br />

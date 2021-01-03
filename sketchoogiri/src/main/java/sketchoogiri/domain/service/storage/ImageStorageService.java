@@ -1,5 +1,6 @@
 package sketchoogiri.domain.service.storage;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -15,7 +16,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
-import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ImageStorageService implements StorageService {
@@ -28,21 +28,22 @@ public class ImageStorageService implements StorageService {
 	}
 
 	@Override
-	public Path store(MultipartFile file) {
+	public Path store(String originalFileName, String contentType, byte[] content) {
 		try {
-			if (file.isEmpty()) {
+			if (content.length == 0) {
 				throw new StorageException("Failed to store empty file.");
 			}
-			if (!file.getContentType().matches("image/png|image/jpeg")) {
+			if (!contentType.matches("image/png|image/jpeg")) {
 				throw new StorageContentTypeNotSupportedException("This content-type is not supported.");
 			}
-			Path destinationFile = createUniqueFile(file);
+			Path destinationFile = createUniqueFile(originalFileName);
 			if (!destinationFile.getParent().equals(this.rootLocation.toAbsolutePath())) {
+				System.out.println(destinationFile.getParent());
 				// This is a security check
 				throw new StorageException(
 						"Cannot store file outside current directory.");
 			}
-			try (InputStream inputStream = file.getInputStream()) {
+			try (InputStream inputStream = new ByteArrayInputStream(content)) {
 				Files.copy(inputStream, destinationFile);
 			}
 			return destinationFile;
@@ -104,11 +105,11 @@ public class ImageStorageService implements StorageService {
 		}
 	}
 	
-	public Path createUniqueFile(MultipartFile file) {
+	public Path createUniqueFile(String originalFileName) {
 		// 現在の日付時刻を利用してユニークなファイルを作成
        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
        String datetime = LocalDateTime.now().format(formatter);
-       String originalFileName = file.getOriginalFilename();
+       // String originalFileName = file.getOriginalFilename();
        String extention = originalFileName.substring(originalFileName.lastIndexOf("."));
        Path uniqueFile = this.rootLocation.resolve(
     		   Paths.get(datetime + extention))

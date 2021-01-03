@@ -1,17 +1,22 @@
 package sketchoogiri.app.theme;
 
+import java.io.IOException;
 import java.nio.file.Path;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Base64Utils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 
+import sketchoogiri.app.sketch.SketchData;
 import sketchoogiri.domain.mapper.theme.ThemeMapper;
 import sketchoogiri.domain.mapper.user.UserMapper;
 import sketchoogiri.domain.model.Theme;
@@ -21,40 +26,63 @@ import sketchoogiri.domain.service.storage.StorageService;
 @Controller
 @RequestMapping("/theme")
 public class ThemeController {
+	@Autowired
+	SketchData sketchData;
 
 	@Autowired
 	StorageService storageService;
-	
+
 	@Autowired
 	ThemeMapper themeMapper;
-	
+
 	@Autowired
 	UserMapper userMapper;
-	
+
 	@ModelAttribute
 	ThemeForm setUpForm() {
 		return new ThemeForm();
 	}
-	
+
 	@GetMapping("/upload")
 	public String form(Model model) {
+		String imageBase64;
+		if (sketchData.getImage() != null) {
+			System.out.println(sketchData.getImage());
+			imageBase64 = Base64Utils.encodeToString(sketchData.getImage().getBytes());
+			StringBuilder sb = new StringBuilder();
+			sb.append("data:");
+			sb.append(sketchData.getImage().getContentType());
+			sb.append(";base64,");
+			sb.append(imageBase64);
+			model.addAttribute("image", sb.toString());
+		}
 		return "theme-form";
 	}
 
 	@PostMapping("/upload")
-	public String post(@Validated ThemeForm themeForm, BindingResult bindingResult, Model model) {
+	public String post(@Validated ThemeForm themeForm, BindingResult bindingResult, SessionStatus sessionStatus,
+			Model model) {
 		if (bindingResult.hasErrors()) {
 			return form(model);
 		}
-		Path path = storageService.store(themeForm.getImage());
-		Theme theme = new Theme();
-		theme.setUserId(dummyUser().getUserId());
-		theme.setRequest(themeForm.getRequest());
-		theme.setImgUrl("/images/" + path.getFileName().toString());
-		themeMapper.create(theme);
+		MultipartFile image = themeForm.getImage();
+		Path path;
+		try {
+			path = storageService.store(image.getOriginalFilename(), image.getContentType(), image.getBytes());
+			Theme theme = new Theme();
+			theme.setUserId(dummyUser().getUserId());
+			theme.setRequest(themeForm.getRequest());
+			theme.setImgUrl("/images/" + path.getFileName().toString());
+			themeMapper.create(theme);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		sessionStatus.setComplete();
 		return "redirect:/mypage";
 	}
-	
+
 	public User dummyUser() {
 		User dummyUser = userMapper.findByUserId("hentai");
 		return dummyUser;

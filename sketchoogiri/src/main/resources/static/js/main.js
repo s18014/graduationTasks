@@ -54,10 +54,7 @@ function sketchManager(p) {
   const palettePenThicknessLabel = document.querySelector('label[for="palette-pen-thickness"]');
   const sendSketch = document.getElementById('send-sketch');
   
-  sendSketch.addEventListener('submit', (e) => {
-	    e.preventDefault();
-	    send2(e);
-	  }, false);
+  sendSketch.addEventListener('submit', send, false);
 
   // 基本の操作を無効
   function preventDefaultFunc(e) {
@@ -333,32 +330,20 @@ function sketchManager(p) {
       return blob;
     }
   
-  function send(formElem) {
-      const blob = createBlob();
-      let fd = new FormData(formElem);
-      fd.append('image', blob);
-      fd.append('redirectUrl', document.getElementById('redirect-url').value);
-      let xhr = new XMLHttpRequest();
-      xhr.open('POST', formElem.action);
-      xhr.send(fd);
-    }
-  
-  function send2(e) {
-	  /*
-	  const blob = createBlob();
-	  const inputFile = document.createElement('input');
-	  inputFile.name = 'image';
-	  inputFile.type = 'file';
-	  inputFile.value = canvas.toDataURL();
-	  sendSketch.appendChild(inputFile);
-	  sendSketch.submit();
-	  */
-      const blob = createBlob();
-      let fd = new FormData(sendSketch);
-      fd.append('image', blob);
-      let xhr = new XMLHttpRequest();
-      xhr.open('POST', sendSketch.action);
-      xhr.send(fd);
-      sendSketch.submit();
+  function send(e) {
+	  e.preventDefault();
+     const blob = createBlob();
+     let fd = new FormData(sendSketch);
+     fd.append('image', blob);
+     fetch(sendSketch.action, {
+    	 method: 'POST', 
+    	 body: fd
+      })
+     .then((response) => {
+    	 if (response.redirected) {
+    		 window.location.href = response.url;
+    	 }
+    	 console.log(response)
+     });
   }
 }
