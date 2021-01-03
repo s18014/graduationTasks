@@ -22,6 +22,7 @@
 			<tr th:each="theme : ${themes}">
 				<td th:text="${theme.request}"></td>
 				<td><img th:src="${theme.imgUrl}" width=300 /></td>
+				<td><a th:href="@{/theme/{id}(id=${theme.themeId})}">詳細</a></td>
 			</tr>
 		</table>
 	</div>

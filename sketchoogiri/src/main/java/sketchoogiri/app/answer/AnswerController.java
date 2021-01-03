@@ -1,4 +1,4 @@
-package sketchoogiri.app.theme;
+package sketchoogiri.app.answer;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.Base64Utils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,20 +13,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import sketchoogiri.app.sketch.SketchData;
 import sketchoogiri.domain.mapper.answer.AnswerMapper;
 import sketchoogiri.domain.mapper.theme.ThemeMapper;
 import sketchoogiri.domain.mapper.user.UserMapper;
-import sketchoogiri.domain.model.Theme;
+import sketchoogiri.domain.model.Answer;
 import sketchoogiri.domain.model.User;
 import sketchoogiri.domain.service.storage.StorageService;
 
 @Controller
-@RequestMapping("/theme")
-public class ThemeController {
+@RequestMapping("/answer")
+public class AnswerController {
 	@Autowired
 	SketchData sketchData;
 
@@ -44,57 +43,40 @@ public class ThemeController {
 	UserMapper userMapper;
 
 	@ModelAttribute
-	ThemeForm setUpForm() {
-		return new ThemeForm();
+	AnswerForm setUpForm() {
+		return new AnswerForm();
 	}
 	
-	@GetMapping("/{id}")
-	public String view(Model model,
-			@PathVariable String id) {
+	@GetMapping("/new")
+	public String form(Model model, @RequestParam("theme") String id) {
 		model.addAttribute("theme", themeMapper.findByThemeId(Integer.parseInt(id)));
-		model.addAttribute("answers", answerMapper.findByThemeId(Integer.parseInt(id)));
-		return "theme";
+		return "answer-form";
 	}
-
-	@GetMapping("/upload")
-	public String form(Model model) {
-		/*
-		String imageBase64;
-		if (sketchData.getImage() != null) {
-			System.out.println(sketchData.getImage());
-			imageBase64 = Base64Utils.encodeToString(sketchData.getImage().getBytes());
-			StringBuilder sb = new StringBuilder();
-			sb.append("data:");
-			sb.append(sketchData.getImage().getContentType());
-			sb.append(";base64,");
-			sb.append(imageBase64);
-			model.addAttribute("image", sb.toString());
-		}
-		*/
-		return "theme-form";
-	}
-
-	@PostMapping("/upload")
-	public String post(@Validated ThemeForm themeForm, BindingResult bindingResult, SessionStatus sessionStatus,
+	
+	@PostMapping("/new")
+	public String upload(@Validated AnswerForm answerForm,
+			@RequestParam("theme") String id,
+			BindingResult bindingResult,
 			Model model) {
 		if (bindingResult.hasErrors()) {
-			return form(model);
+			return form(model, id);
 		}
-		MultipartFile image = themeForm.getImage();
+		MultipartFile image = answerForm.getImage();
 		Path path;
 		try {
 			path = storageService.store(image.getOriginalFilename(), image.getContentType(), image.getBytes());
-			Theme theme = new Theme();
-			theme.setUserId(dummyUser().getUserId());
-			theme.setRequest(themeForm.getRequest());
-			theme.setImgUrl("/images/" + path.getFileName().toString());
-			themeMapper.create(theme);
-			sessionStatus.setComplete();
-			return "redirect:/theme/" + theme.getThemeId().toString();
+			Answer answer = new Answer();
+			answer.setUserId(dummyUser().getUserId());
+			answer.setThemeId(Integer.parseInt(id));
+			answer.setDescription(answerForm.getDescription());
+			answer.setImgUrl("/images/" + path.getFileName().toString());
+			answerMapper.create(answer);
+			return "redirect:/theme/" + id;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	
+
 		return "redirect:/";
 	}
 
@@ -102,5 +84,4 @@ public class ThemeController {
 		User dummyUser = userMapper.findByUserId("hentai");
 		return dummyUser;
 	}
-
 }

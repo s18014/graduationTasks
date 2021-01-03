@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS theme (
 
 CREATE TABLE IF NOT EXISTS answer (
   answer_id SERIAL NOT NULL,
-  theme_id SERIAL NOT NULL,
+  theme_id INTEGER NOT NULL,
   user_id VARCHAR(255) NOT NULL,
   description VARCHAR(255) NOT NULL,
   img_url VARCHAR NOT NULL,

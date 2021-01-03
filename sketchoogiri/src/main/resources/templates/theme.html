@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<h1>お題</h1>
+	<ul>
+		<li>
+			<a th:href="@{/}">トップへ</a>
+		</li>
+	</ul>
+	<div>
+		<img th:src="${theme.imgUrl}" width=300/>
+	</div>
+	<div>
+		<p th:text="${theme.request}"></p>
+	</div>
+
+	<a th:href="@{/answer/new?theme={id}(id=${theme.themeId})}">回答する</a>
+
+	<div>
+		<h2>回答一覧</h2>
+		<table>
+			<tr><th>ユーザーID</th><th>回答</th><th>画像</th></tr>
+			<tr th:each="answer : ${answers}">
+				<td th:text="${answer.userId}"></td>
+				<td th:text="${answer.description}"></td>
+				<td><img th:src="${answer.imgUrl}" width=300 /></td>
+				<td><a th:href="@{/answer/{id}(id=${answer.answerId})}">詳細</a></td>
+			</tr>
+		</table>
+	</div>
+
+</body>
+</html>

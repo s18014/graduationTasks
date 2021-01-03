@@ -3,15 +3,15 @@ package sketchoogiri.app.sketch;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -29,9 +29,20 @@ public class SketchController {
 	}
 
 	@GetMapping()
-	public String sketch(Model model, @RequestParam("redirect-url") String redirectUrl) {
+	public String sketch(Model model,
+			@RequestParam("redirect-url") String redirectUrl,
+			@RequestParam(name = "image-url", required = false) String imageUrl) {
 		model.addAttribute("redirectUrlParam", redirectUrl);
+		model.addAttribute("imageUrl", imageUrl);
 		return "sketch";
+	}
+	
+	@GetMapping(value = "/drawing", produces = MediaType.IMAGE_PNG_VALUE)
+	public @ResponseBody byte[] getDrawingImage() {
+		if (sketchData != null) {
+			return sketchData.getImage().getBytes();
+		}
+		return null;
 	}
 
 	@PostMapping()

@@ -3,6 +3,11 @@
   padding: 0;
 }
 
+a {
+	text-decoration: none;
+	color: #000000;
+}
+
 #canvas-container {
   background-color: #eeeeee;
   width: auto;

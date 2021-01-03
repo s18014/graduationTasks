@@ -19,11 +19,26 @@
 				<td th:text="${theme.userId}"></td>
 				<td th:text="${theme.request}"></td>
 				<td><img th:src="${theme.imgUrl}" width=300 /></td>
+				<td><a th:href="@{/theme/{id}(id=${theme.themeId})}">詳細</a></td>
 			</tr>
 		</table>
-
 	</div>
-		<div>
+	
+	<div>
+		<h2>回答一覧</h2>
+		<table>
+			<tr><th>ユーザーID</th><th>お題</th><th>画像</th></tr>
+			<tr th:each="answer : ${answerAll}">
+				<td th:text="${answer.userId}"></td>
+				<td th:text="${answer.description}"></td>
+				<td><img th:src="${answer.imgUrl}" width=300 /></td>
+				<td><a th:href="@{/answer/{id}(id=${answer.answerId})}">詳細</a></td>
+			</tr>
+		</table>
+	</div>
+	
+	
+	<div>
 		<h2>ユーザー一覧</h2>
 		<table>
 			<tr><th>ユーザーID</th><th>名前</th></tr>

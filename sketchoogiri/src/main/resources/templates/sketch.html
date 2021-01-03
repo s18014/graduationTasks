@@ -71,14 +71,9 @@
           </label>
         </div>
 
+
         <div class="side-menu-icon">
-          <form id="send-sketch" th:action='@{/sketch}' method="post" th:object="${sketchForm}">
-            <label for="complite">
-              完了
-              <input type="hidden" id="redirect-url" name="redirectUrl" th:value="${redirectUrlParam}">
-              <input type="submit" id="complite" name="complite">
-            </label>
-          </form>
+        	<a th:href="${redirectUrlParam}">戻る</a>
         </div>
 
       </div>

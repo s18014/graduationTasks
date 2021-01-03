@@ -13,9 +13,9 @@
 	</ul>
 	<div>
 		<p>お題を投稿する</p>
-		<img th:if="${image}" th:src="${image}" width=300/>
+		<img th:if="${image}" th:src="@{/sketch/drawing}" width=300/>
 		<form th:action="@{/theme/upload}" method="post" enctype="multipart/form-data" th:object="${themeForm}">
-			<input type="file" th:field="*{image}"/>
+			<input type="file" th:field="*{image}" accept="image/*"/>
 			<br />
 			<input placeholder="リクエスト" type="text" th:field="*{request}"/>
 			<a href="/sketch?redirect-url=/theme/upload">お絵描き</a>

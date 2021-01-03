@@ -34,8 +34,8 @@
        from theme
        where user_id = #{userId}
     </select>
-    
-    <insert id="create" parameterType="Theme">
+
+    <insert id="create" parameterType="Theme" useGeneratedKeys="true" keyProperty="themeId">
     	insert into theme (user_id, request, img_url, posted_time)
     	values (#{userId}, #{request}, #{imgUrl}, current_timestamp)
     </insert>

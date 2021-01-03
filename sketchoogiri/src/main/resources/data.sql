@@ -16,14 +16,14 @@ INSERT INTO usr(user_id, name, password, role) VALUES(
 -- お題
 INSERT INTO theme(user_id, request, img_url, posted_time) VALUES(
 	'hentai',
-	'エロくして',
-	'dummy',
+	'可愛くして',
+	'',
 	'2020-01-01 00:00:00'
 )/;
 INSERT INTO theme(user_id, request, img_url, posted_time) VALUES(
 	'hentai',
-	'もっとエロくして',
-	'dummy',
+	'センシティブな感じで',
+	'',
 	'2020-01-01 00:01:00'
 )/;
 
@@ -31,15 +31,15 @@ INSERT INTO theme(user_id, request, img_url, posted_time) VALUES(
 INSERT INTO answer(theme_id, user_id, description, img_url, posted_time) VALUES(
 	1,
 	'gentleman',
-	'エロくした',
-	'dummy',
+	'目を可愛くした',
+	'',
 	'2020-01-01 00:00:50'
 )/;
 
 INSERT INTO answer(theme_id, user_id, description, img_url, posted_time) VALUES(
 	2,
 	'gentleman',
-	'もっとエロくした',
-	'dummy',
+	'絶対領域展開、お前も鬼にならないか？',
+	'',
 	'2020-01-01 00:01:50'
 )/;

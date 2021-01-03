@@ -52,9 +52,9 @@ function sketchManager(p) {
   const palettePenMenuContainer = document.getElementById('palette-pen-menu-container');
   const palettePenThickness = document.getElementById('palette-pen-thickness');
   const palettePenThicknessLabel = document.querySelector('label[for="palette-pen-thickness"]');
-  const sendSketch = document.getElementById('send-sketch');
+  // const sendSketch = document.getElementById('send-sketch');
   
-  sendSketch.addEventListener('submit', send, false);
+  // sendSketch.addEventListener('submit', send, false);
 
   // 基本の操作を無効
   function preventDefaultFunc(e) {
@@ -330,6 +330,7 @@ function sketchManager(p) {
       return blob;
     }
   
+  /*
   function send(e) {
 	  e.preventDefault();
      const blob = createBlob();
@@ -346,4 +347,5 @@ function sketchManager(p) {
     	 console.log(response)
      });
   }
+  */
 }
