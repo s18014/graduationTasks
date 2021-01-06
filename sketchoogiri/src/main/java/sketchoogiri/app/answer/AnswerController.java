@@ -47,17 +47,17 @@ public class AnswerController {
 		return new AnswerForm();
 	}
 	
-	@GetMapping("/new")
+	@GetMapping("/upload")
 	public String form(Model model, @RequestParam("theme") String id) {
 		model.addAttribute("theme", themeMapper.findByThemeId(Integer.parseInt(id)));
 		return "answer-form";
 	}
 	
-	@PostMapping("/new")
+	@PostMapping("/upload")
 	public String upload(@Validated AnswerForm answerForm,
-			@RequestParam("theme") String id,
 			BindingResult bindingResult,
-			Model model) {
+			Model model,
+			@RequestParam("theme") String id) {
 		if (bindingResult.hasErrors()) {
 			return form(model, id);
 		}

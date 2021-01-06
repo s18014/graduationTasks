@@ -1,29 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title></title>
+	<title></title>
+	<div th:replace="base"></div>
+	<link rel="stylesheet" th:href="@{/css/theme-form.css}">
 </head>
 <body>
-	<h1>投稿用フォーム</h1>
-	<ul>
-		<li>
-			<a th:href="@{/mypage}">トップへ</a>
-		</li>
-	</ul>
-	<div>
-		<p>お題を投稿する</p>
-		<img th:if="${image}" th:src="@{/sketch/drawing}" width=300/>
-		<form th:action="@{/theme/upload}" method="post" enctype="multipart/form-data" th:object="${themeForm}">
-			<input type="file" th:field="*{image}" accept="image/*"/>
-			<br />
-			<input placeholder="リクエスト" type="text" th:field="*{request}"/>
-			<a href="/sketch?redirect-url=/theme/upload">お絵描き</a>
-			<span th:if="${image}" th:value="${image}"></span>
-			<span th:if="${#fields.hasErrors('request')}" th:errors="*{request}" style="color: red">error!</span>
-			<br />
-			<button type="submit">投稿</button>
-		</form>
-	</div>
+	<div th:replace="header"></div>
+	<div th:replace="nav"></div>
+
+	<main class="container">
+		<div class="main-container">
+			<div class="main-cotainer-inner">
+				<p>お題の投稿</p>
+				<div class="preview">
+					<div class="preview-container">
+						<div class="img-area" id="preview">
+						</div>
+					</div>
+				</div>
+				<form class="theme-form" th:action="@{/theme/upload}" method="post" enctype="multipart/form-data" th:object="${themeForm}">
+
+					<div class="form-group text-center">
+						<label>
+							<span class="btn btn-primary">
+								画像を選択
+								<input type="file" id="inputImage" th:field="*{image}" accept="image/*" style="display: none;"/>
+							</span>
+						</label>
+					</div>
+
+					<div class="form-group">
+						<label for="formRequest">お題</label>
+						<span th:if="${#fields.hasErrors('request')}" th:errors="*{request}" style="color: red">error!</span>
+						<input class="form-control" id="formRequest" placeholder="リクエスト" type="text" th:field="*{request}"/>
+						<span th:if="${image}" th:value="${image}"></span>
+					</div>
+
+					<div class="form-group">
+						<button class="btn btn-primary" type="submit">投稿</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</main>
+
+	<script type="text/javascript">
+	const inputImage = document.getElementById('inputImage');
+	inputImage.addEventListener('change', (e) => {
+		const reader = new FileReader();
+		reader.onload = (e) => {
+			document.getElementById('preview').style.backgroundImage = 'url(' + e.target.result + ')';
+		}
+		reader.readAsDataURL(e.target.files[0]);
+	});
+
+	</script>
 </body>
 </html>

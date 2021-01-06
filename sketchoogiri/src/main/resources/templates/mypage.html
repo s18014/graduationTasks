@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title></title>
+	<title></title>
+	<div th:replace="base"></div>	
 </head>
 <body>
-	<h1>My page</h1>
-	<h2>ようこそ <span th:text="${loginUser.name}"></span> さん!</h2>
-	<ul>
-		<li>
-			<a th:href="@{/}">トップへ</a>
-		</li>
-		<li>
-			<a th:href="@{/theme/upload}">投稿</a>
-		</li>
-	</ul>
+	<div th:replace="header"></div>
+	<div th:replace="nav"></div>
+	<h2>My page</h2>
+	<p>ようこそ <span th:text="${loginUser.name}"></span> さん!</p>
+	<a th:href="@{/theme/upload}">投稿</a>
 	<div>
 		<h3>投稿したお題一覧</h3>
 		<table>

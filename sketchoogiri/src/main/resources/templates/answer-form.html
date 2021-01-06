@@ -1,36 +1,80 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title></title>
+	<title></title>
+	<div th:replace="base"></div>
+	<link rel="stylesheet" th:href="@{/css/answer-form.css}">
 </head>
 <body>
-	<h1>回答フォーム</h1>
-	<ul>
-		<li>
-			<a th:href="@{/}">トップへ</a>
-		</li>
-	</ul>
-	<div>
-		<img th:src="${theme.imgUrl}" width=300/>
-	</div>
-	<div>
-		<p th:text="${theme.request}"></p>
-	</div>
-	<div>
-		<p>回答する</p>
-		<form th:action="@{/answer/new?theme={id}(id=${theme.themeId})}" method="post" enctype="multipart/form-data" th:object="${answerForm}">
-			<input type="file" th:field="*{image}" accept="image/*"/>
-			<br />
-			<input placeholder="説明" type="text" th:field="*{description}"/>
-			<a th:href="@{/sketch?redirect-url=/answer/new?theme={id}(id=${theme.themeId})}">お絵描き</a>
-			<span th:if="${image}" th:value="${image}"></span>
-			<span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" style="color: red">error!</span>
-			<br />
-			<button type="submit">投稿</button>
-		</form>
-	</div>
 
-	
+	<div th:replace="header"></div>
+	<div th:replace="nav"></div>
+
+	<main class="container">
+		<div class="main-container">
+			<div class="main-cotainer-inner">
+
+				<h2>落書きする</h2>
+
+				<div class="theme">
+					<div class="theme-container">
+						<div class="preview">
+							<div class="preview-container">
+								<div class="img-area" th:style="|background-image: url(${theme.imgUrl})|">
+								</div>
+							</div>
+						</div>
+						<div class="request">
+							<p th:text="${theme.request}"></p>
+						</div>
+					</div>
+				</div>
+				<div>
+				</div>
+
+				<div class="preview">
+					<div class="preview-container">
+						<div class="img-area" id="preview">
+						</div>
+					</div>
+				</div>
+
+				<div>
+					<form class="answer-form" th:action="@{/answer/upload?theme={id}(id=${theme.themeId})}" method="post" enctype="multipart/form-data" th:object="${answerForm}">
+						<div class="form-group text-center">
+							<label>
+								<span class="btn btn-primary">
+									画像を選択
+									<input type="file" id="inputImage" th:field="*{image}" accept="image/*" style="display: none;"/>
+								</span>
+							</label>
+						</div>
+
+						<div class="form-group">
+							<label for="formDescription">説明</label>
+							<span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" style="color: red">error!</span>
+							<input class="form-control" placeholder="説明" id="formDescription" type="text" th:field="*{description}"/>
+						</div>
+
+						<div class="form-group">
+							<button class="btn btn-primary" type="submit">投稿</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>
+
+
+	<script type="text/javascript">
+	const inputImage = document.getElementById('inputImage');
+	inputImage.addEventListener('change', (e) => {
+		const reader = new FileReader();
+		reader.onload = (e) => {
+			document.getElementById('preview').style.backgroundImage = 'url(' + e.target.result + ')';
+		}
+		reader.readAsDataURL(e.target.files[0]);
+	});
+	</script>
 </body>
 </html>

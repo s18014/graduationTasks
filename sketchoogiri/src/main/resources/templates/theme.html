@@ -2,15 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title></title>
+	<title></title>
+	<div th:replace="base"></div>	
 </head>
 <body>
-	<h1>お題</h1>
-	<ul>
-		<li>
-			<a th:href="@{/}">トップへ</a>
-		</li>
-	</ul>
+	<div th:replace="header"></div>
+	<div th:replace="nav"></div>
+	<h2>お題</h2>
 	<div>
 		<img th:src="${theme.imgUrl}" width=300/>
 	</div>
@@ -18,7 +16,7 @@
 		<p th:text="${theme.request}"></p>
 	</div>
 
-	<a th:href="@{/answer/new?theme={id}(id=${theme.themeId})}">回答する</a>
+	<a th:href="@{/answer/upload?theme={id}(id=${theme.themeId})}">回答する</a>
 
 	<div>
 		<h2>回答一覧</h2>

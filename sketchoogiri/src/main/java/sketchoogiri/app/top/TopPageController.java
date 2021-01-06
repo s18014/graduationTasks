@@ -29,13 +29,13 @@ public class TopPageController {
 	UserMapper userMapper;
 
 	@GetMapping
-	public String test(Model model) {
+	public String top(Model model) {
 		List<Theme> themeAll = themeMapper.findAll();
 		List<User> userAll = userMapper.findAll();
 		List<Answer> answerAll = answerMapper.findAll();
 		model.addAttribute("themeAll", themeAll);
 		model.addAttribute("userAll", userAll);
 		model.addAttribute("answerAll", answerAll);
-		return "test";
+		return "top";
 	}
 }

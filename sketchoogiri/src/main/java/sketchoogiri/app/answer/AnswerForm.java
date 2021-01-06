@@ -1,10 +1,12 @@
 package sketchoogiri.app.answer;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class AnswerForm {
+public class AnswerForm implements Serializable {
 	@NotBlank
 	private String description;
 

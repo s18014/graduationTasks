@@ -75,7 +75,9 @@ public class ThemeController {
 	}
 
 	@PostMapping("/upload")
-	public String post(@Validated ThemeForm themeForm, BindingResult bindingResult, SessionStatus sessionStatus,
+	public String post(@Validated ThemeForm themeForm,
+			BindingResult bindingResult,
+			SessionStatus sessionStatus,
 			Model model) {
 		if (bindingResult.hasErrors()) {
 			return form(model);

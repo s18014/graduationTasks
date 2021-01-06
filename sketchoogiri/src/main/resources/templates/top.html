@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title></title>
+	<title></title>
+	<meta charset="UTF-8">
+	<div th:replace="base"></div>
 </head>
 <body>
-	<h1>Test</h1>
-	<ul>
-		<li>
-			<a th:href="@{/mypage}">マイページへ</a>
-		</li>
-	</ul>
+	<div th:replace="header"></div>
+	<div th:replace="nav"></div>
 	<div>
 		<h2>お題一覧</h2>
 		<table>

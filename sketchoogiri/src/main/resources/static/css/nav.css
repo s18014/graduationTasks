@@ -1,0 +1,30 @@
+nav a {
+  color: #792a00;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #792a00;
+}
+
+nav .nav-item {
+  background-color: #fff8c2;
+  border-right: solid 1px #ffffff;
+}
+
+nav .nav-item:last-child {
+  border-right: none;
+}
+
+nav .nav-item:hover {
+  background-color: #ffffee;
+}
+
+.nav-container {
+  border-top: solid 3px #d59608;
+}
+
+.nav-link {
+  padding-left: 0;
+  padding-right: 0;
+}
