@@ -81,7 +81,7 @@ public class AnswerController {
 	}
 
 	public User dummyUser() {
-		User dummyUser = userMapper.findByUserId("hentai");
+		User dummyUser = userMapper.findByUserId("tester1");
 		return dummyUser;
 	}
 }

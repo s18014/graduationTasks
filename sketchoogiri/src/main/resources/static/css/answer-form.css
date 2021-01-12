@@ -1,3 +1,4 @@
+@charset "utf-8";
 
 .theme-container {
   padding-top: 30px;
@@ -18,12 +19,11 @@
   margin: auto;
 }
 
-.img-area {
-  background: no-repeat center center;
-  background-size: contain;
-  width: 100%;
-  height: 100%;
-
+.preview-container img {
+	visibility: hidden;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
 }
 
 .answer-form {
@@ -38,3 +38,10 @@
 .request p {
   font-size: 24px;
 }
+
+.main-container {
+	background-color: #ffffff;
+	padding: 20px;
+	min-height: 1000px;
+}
+

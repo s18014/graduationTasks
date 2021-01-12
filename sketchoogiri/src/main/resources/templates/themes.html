@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title></title>
+<div th:replace="base"></div>
+<link rel="stylesheet" th:href="@{/css/themes.css}">
+</head>
+<body>
+	<div th:replace="header"></div>
+	<div th:replace="nav"></div>
+
+	<main class="container">
+		<div class="main-container">
+			<div class="main-container-inner">
+				<div class="themes">
+					<div class="themes-container">
+						<div class="themes-container-inner container">
+							<div class="row">
+
+								<div class="theme col-sm-12 col-md-6 col-lg-4 col-xl-3"
+									th:each="theme : ${themes}">
+									<div class="theme-container">
+										<a th:href="@{/theme/{id}(id=${theme.themeId})}">
+											<div class="theme-img">
+												<img th:src="${theme.imgUrl}" />
+											</div>
+											<div class="theme-request">
+												<p th:text="${theme.request}"></p>
+											</div>
+										</a>
+										<div class="download-btn d-flex justify-content-end">
+											<a class="btn btn-primary" th:href="${theme.imgUrl}" download>保存</a>
+										</div>
+
+
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+
+	<footer> footer </footer>
+</body>
+</html>

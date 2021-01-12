@@ -15,8 +15,7 @@
 				<p>お題の投稿</p>
 				<div class="preview">
 					<div class="preview-container">
-						<div class="img-area" id="preview">
-						</div>
+						<img src="" alt="" id="preview">
 					</div>
 				</div>
 				<form class="theme-form" th:action="@{/theme/upload}" method="post" enctype="multipart/form-data" th:object="${themeForm}">
@@ -25,7 +24,7 @@
 						<label>
 							<span class="btn btn-primary">
 								画像を選択
-								<input type="file" id="inputImage" th:field="*{image}" accept="image/*" style="display: none;"/>
+								<input type="file" id="inputImage" th:field="*{image}" accept="image/*" style="display: none;" required/>
 							</span>
 						</label>
 					</div>
@@ -33,7 +32,7 @@
 					<div class="form-group">
 						<label for="formRequest">お題</label>
 						<span th:if="${#fields.hasErrors('request')}" th:errors="*{request}" style="color: red">error!</span>
-						<input class="form-control" id="formRequest" placeholder="リクエスト" type="text" th:field="*{request}"/>
+						<input class="form-control" id="formRequest" placeholder="リクエスト" type="text" th:field="*{request}" />
 						<span th:if="${image}" th:value="${image}"></span>
 					</div>
 
@@ -51,7 +50,8 @@
 	inputImage.addEventListener('change', (e) => {
 		const reader = new FileReader();
 		reader.onload = (e) => {
-			document.getElementById('preview').style.backgroundImage = 'url(' + e.target.result + ')';
+			document.getElementById('preview').src = e.target.result;
+			document.getElementById('preview').style.visibility = "visible";
 		}
 		reader.readAsDataURL(e.target.files[0]);
 	});

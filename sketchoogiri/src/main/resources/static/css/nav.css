@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 nav a {
   color: #792a00;
   font-weight: bold;
@@ -8,8 +10,8 @@ nav a:hover {
 }
 
 nav .nav-item {
-  background-color: #fff8c2;
-  border-right: solid 1px #ffffff;
+  background-color: #ffffff;
+  border-right: solid 1px #fafafa;
 }
 
 nav .nav-item:last-child {
@@ -17,11 +19,12 @@ nav .nav-item:last-child {
 }
 
 nav .nav-item:hover {
-  background-color: #ffffee;
+  background-color: #fafafa;
 }
 
 .nav-container {
   border-top: solid 3px #d59608;
+  border-bottom: solid 3px #d59608;
 }
 
 .nav-link {

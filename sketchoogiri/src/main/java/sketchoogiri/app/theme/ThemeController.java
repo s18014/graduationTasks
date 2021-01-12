@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -54,6 +55,13 @@ public class ThemeController {
 		model.addAttribute("theme", themeMapper.findByThemeId(Integer.parseInt(id)));
 		model.addAttribute("answers", answerMapper.findByThemeId(Integer.parseInt(id)));
 		return "theme";
+	}
+	
+	@GetMapping("/recent")
+	public String viewResently(Model model,
+			@RequestParam String page) {
+		model.addAttribute("themes", themeMapper.findAll());
+		return "themes";
 	}
 
 	@GetMapping("/upload")
@@ -101,7 +109,7 @@ public class ThemeController {
 	}
 
 	public User dummyUser() {
-		User dummyUser = userMapper.findByUserId("hentai");
+		User dummyUser = userMapper.findByUserId("tester1");
 		return dummyUser;
 	}
 

@@ -1,13 +1,10 @@
+@charset "utf-8";
+
 body {
 	background-color: #fff8c2;
-}
-
-.container {
 	min-width: 320px;
 }
 
-.main-container {
-	background-color: #ffffff;
-	padding: 20px;
-	min-height: 1000px;
+a:link, a:visited, a:hover, a:active {
+	text-decoration: none;
 }

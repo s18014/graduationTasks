@@ -35,7 +35,7 @@ public class MyPageController {
 	}
 	
 	public User dummyUser() {
-		User dummyUser = userMapper.findByUserId("hentai");
+		User dummyUser = userMapper.findByUserId("tester1");
 		return dummyUser;
 	}
 }

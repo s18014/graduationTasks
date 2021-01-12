@@ -1,3 +1,4 @@
+@charset "utf-8";
 
 .preview {
 	padding: 30px;
@@ -12,14 +13,20 @@
 	margin: auto;
 }
 
-.img-area {
-	background: no-repeat center center;
-	background-size: contain;
+.preview-container img {
+	visibility: hidden;
 	width: 100%;
 	height: 100%;
+	object-fit: contain;
 }
 
 .theme-form {
 	max-width: 600px;
 	margin: auto;
+}
+
+.main-container {
+	background-color: #ffffff;
+	padding: 20px;
+	min-height: 1000px;
 }
