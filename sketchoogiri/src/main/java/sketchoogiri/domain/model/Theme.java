@@ -2,7 +2,6 @@ package sketchoogiri.domain.model;
 
 import java.time.LocalDateTime;
 
-
 public class Theme {
 	private Integer themeId;
 	private String userId;

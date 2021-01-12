@@ -12,5 +12,5 @@ public interface ThemeMapper {
 	public List<Theme> findByUserId(String userId);
 	public List<Theme> findAll();
 	public void create(Theme theme);
-	public void delete(Integer themeId);
+	// public void delete(Integer themeId);
 }

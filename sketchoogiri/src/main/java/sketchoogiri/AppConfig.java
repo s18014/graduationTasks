@@ -1,10 +1,12 @@
 package sketchoogiri;
 
+
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.boot.autoconfigure.SpringBootVFS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -34,6 +36,7 @@ public class AppConfig {
 		sessionFactory.setDataSource(dataSource);
 		sessionFactory.setConfigLocation(
 				new ClassPathResource("/mybatis-config.xml"));
+		sessionFactory.setVfs(SpringBootVFS.class);
 		return sessionFactory.getObject();
 	}
 }

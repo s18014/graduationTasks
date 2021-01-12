@@ -13,6 +13,6 @@ public interface AnswerMapper {
 	public List<Answer> findByThemeId(Integer themeId);
 	public List<Answer> findAll();
 	public void create(Answer answer);
-	public void delete(Integer themeId);
+	// public void delete(Integer themeId);
 
 }
