@@ -47,10 +47,13 @@ public class AnswerController {
 		return new AnswerForm();
 	}
 	
-	@GetMapping("/upload")
-	public String form(Model model, @RequestParam("theme") String id) {
-		model.addAttribute("theme", themeMapper.findByThemeId(Integer.parseInt(id)));
-		return "answer-form";
+	@GetMapping("/{id}")
+	public String view(Model model,
+			@PathVariable String id) {
+		Answer answer = answerMapper.findByAnswerId(Integer.parseInt(id));
+		model.addAttribute("answer", answer);
+		model.addAttribute("theme", themeMapper.findByThemeId(answer.getThemeId()));
+		return "answer";
 	}
 	
 	@GetMapping("/recent")
@@ -59,7 +62,11 @@ public class AnswerController {
 		return "answers";
 	}
 
-
+	@GetMapping("/upload")
+	public String form(Model model, @RequestParam("theme") String id) {
+		model.addAttribute("theme", themeMapper.findByThemeId(Integer.parseInt(id)));
+		return "answer-form";
+	}
 
 	@PostMapping("/upload")
 	public String upload(@Validated AnswerForm answerForm,

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title></title>
+<head th:replace="~{base :: base}"></head>
+<link rel="stylesheet" th:href="@{/css/answer.css}">
+<link rel="stylesheet" th:href="@{/css/themes.css}">
+</head>
+
+<body>
+	<header th:replace="~{header :: header}"></header>
+	<nav th:replace="~{nav :: nav(page='')}"></nav>
+
+	<main class="container">
+		<div class="main-container">
+			<div class="main-cotainer-inner">
+
+				<div class="answer">
+					<div class="answer-container">
+						<a th:href="@{/answer/{id}(id=${answer.answerId})}">
+							<div class="answer-img">
+								<img th:src="${answer.imgUrl}" />
+							</div>
+							<div class="answer-description">
+								<p th:text="${answer.description}"></p>
+							</div>
+						</a>
+						<div class="download-btn d-flex justify-content-end">
+							<a class="btn btn-primary" th:href="${answer.imgUrl}" download>保存</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="theme-title">
+					<p>お題</p>
+				</div>
+
+				<div class="theme">
+					<div class="theme-container">
+						<a th:href="@{/theme/{id}(id=${theme.themeId})}">
+							<div class="theme-img">
+								<img th:src="${theme.imgUrl}" />
+							</div>
+							<div class="theme-request">
+								<p th:text="${theme.request}"></p>
+							</div>
+						</a>
+						<div class="download-btn d-flex justify-content-end">
+							<a class="btn btn-primary" th:href="${theme.imgUrl}" download>保存</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</main>
+</body>
+</html>

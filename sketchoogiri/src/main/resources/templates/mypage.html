@@ -3,25 +3,61 @@
 <head>
 <title></title>
 <head th:replace="~{base :: base}"></head>
+<link rel="stylesheet" th:href="@{/css/themes.css}">
+<link rel="stylesheet" th:href="@{/css/mypage.css}">
 </head>
+
 <body>
 	<header th:replace="~{header :: header}"></header>
 	<nav th:replace="~{nav :: nav(page='')}"></nav>
 
-	<h2>My page</h2>
-	<p>ようこそ<span th:text="${loginUser.name}"></span>さん</p>
-	<a th:href="@{/theme/upload}">投稿</a>
-	<div>
-		<h3>投稿したお題</h3>
-		<table>
-			<tr><th>お題</th><th>画像</th></tr>
-			<tr th:each="theme : ${themes}">
-				<td th:text="${theme.request}"></td>
-				<td><img th:src="${theme.imgUrl}" width=300 /></td>
-				<td><a th:href="@{/theme/{id}(id=${theme.themeId})}">詳細</a></td>
-			</tr>
-		</table>
-	</div>
-	
+	<main class="container">
+		<div class="main-container">
+			<div class="main-cotainer-inner">
+				<div class="user-info-container">
+					<div class="user-info-container-inner container">
+						<p class="username" th:text="${loginUser.name}"></p>
+						<div class="upload-botton d-flex justify-content-center">
+							<a class="btn-lg btn-success" th:href="@{/theme/upload}">お題を投稿</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="themes">
+					<div class="themes-container">
+						<div class="themes-title">
+							<p>投稿したお題一覧</p>
+						</div>
+						<div class="themes-container-inner container">
+							<div class="row">
+
+								<div class="theme col-sm-12 col-md-6 col-lg-4 col-xl-3"
+									th:each="theme : ${themes}">
+									<div class="theme-container">
+										<a th:href="@{/theme/{id}(id=${theme.themeId})}">
+											<div class="theme-img">
+												<img th:src="${theme.imgUrl}" />
+											</div>
+											<div class="theme-request">
+												<p th:text="${theme.request}"></p>
+											</div>
+										</a>
+										<div class="download-btn d-flex justify-content-end">
+											<a class="btn btn-primary" th:href="${theme.imgUrl}" download>保存</a>
+										</div>
+
+
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</main>
 </body>
 </html>
