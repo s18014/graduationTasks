@@ -12,6 +12,7 @@
         	img_url,
         	posted_time
         from answer
+        order by answer_id desc
     </select>
     
     <select id="findByAnswerId" resultMap="answerResultMap">
@@ -48,6 +49,7 @@
         	posted_time
        from answer
        where theme_id = #{themeId}
+       order by answer_id desc
     </select>
 
     <insert id="create" parameterType="Answer" useGeneratedKeys="true" keyProperty="answerId">

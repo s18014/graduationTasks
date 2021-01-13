@@ -1,22 +1,38 @@
-<nav>
-	<div class="nav-container ">
-		<div class="nav-container-inner">
-			<div class="nav nav-fill bg-white justify-content-between">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>nav</title>
+</head>
+<body>
+	<div th:fragment="nav (page)" th:remove="tag">
 
-				<div class="nav-item">
-					<a class="nav-link" href="/">トップ</a>
-				</div>
-				<div class="nav-item">
-					<a class="nav-link" href="/theme/recent?page=1">お題</a>
-				</div>
-				<div class="nav-item">
-					<a class="nav-link" href="/anwser/recent?page=1">回答</a>
-				</div>
-				<div class="nav-item">
-					<a class="nav-link" href="/sketch?redirect-url=/">お絵描き</a>
-				</div>
+		<nav>
+			<div class="nav-container ">
+				<div class="nav-container-inner">
+					<div class="nav nav-fill bg-white justify-content-between">
 
+						<div class="nav-item"
+							th:classappend="${page} == 'top' ? 'active' : '' ">
+							<a class="nav-link" href="/">トップ</a>
+						</div>
+						<div class="nav-item"
+							th:classappend="${page} == 'themes' ? 'active' : '' ">
+							<a class="nav-link" href="/theme/recent?page=1">お題</a>
+						</div>
+						<div class="nav-item"
+							th:classappend="${page} == 'answers' ? 'active' : '' ">
+							<a class="nav-link" href="/answer/recent?page=1">らくがき</a>
+						</div>
+						<div class="nav-item"
+							th:classappend="${page} == 'sketch' ? 'active' : '' ">
+							<a class="nav-link" href="/sketch?redirect-url=/">お絵描き</a>
+						</div>
+
+					</div>
+				</div>
 			</div>
-		</div>
+		</nav>
+
 	</div>
-</nav>
+</body>
+</html>

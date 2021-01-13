@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title></title>
-	<meta charset="UTF-8">
-	<div th:replace="base"></div>
+<title></title>
+<head th:replace="~{base :: base}"></head>
 </head>
 <body>
-	<div th:replace="header"></div>
-	<div th:replace="nav"></div>
+	<header th:replace="~{header :: header}"></header>
+	<nav th:replace="~{nav :: nav(page='top')}"></nav>
 	<div>
 		<h2>お題一覧</h2>
 		<table>

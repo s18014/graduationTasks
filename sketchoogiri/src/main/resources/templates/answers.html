@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title></title>
+<head th:replace="~{base :: base}"></head>
+<link rel="stylesheet" th:href="@{/css/answers.css}">
+</head>
+<body>
+	<header th:replace="~{header :: header}"></header>
+	<nav th:replace="~{nav :: nav(page='answers')}"></nav>
+
+	<main class="container">
+		<div class="main-container">
+			<div class="main-container-inner">
+				<div class="answers">
+					<div class="answers-container">
+						<div class="answers-container-inner container">
+							<div class="row">
+
+								<div class="answer col-sm-12 col-md-6 col-lg-4 col-xl-3"
+									th:each="answer : ${answers}">
+									<div class="answer-container">
+										<a th:href="@{/answer/{id}(id=${answer.answerId})}">
+											<div class="answer-img">
+												<img th:src="${answer.imgUrl}" />
+											</div>
+											<div class="answer-description">
+												<p th:text="${answer.description}"></p>
+											</div>
+										</a>
+										<div class="download-btn d-flex justify-content-end">
+											<a class="btn btn-primary" th:href="${answer.imgUrl}" download>保存</a>
+										</div>
+
+
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+
+	<footer> footer </footer>
+</body>
+</html>

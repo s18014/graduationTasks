@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title></title>
-	<div th:replace="base"></div>
-	<link rel="stylesheet" th:href="@{/css/theme-form.css}">
+<title></title>
+<head th:replace="~{base :: base}"></head>
+<link rel="stylesheet" th:href="@{/css/theme-form.css}">
 </head>
 <body>
-	<div th:replace="header"></div>
-	<div th:replace="nav"></div>
+	<header th:replace="~{header :: header}"></header>
+	<nav th:replace="~{nav :: nav(page='')}"></nav>
 
 	<main class="container">
 		<div class="main-container">

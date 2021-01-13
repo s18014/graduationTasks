@@ -1,34 +1,68 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title></title>
-	<div th:replace="base"></div>	
+<title></title>
+<head th:replace="~{base :: base}"></head>
+<link rel="stylesheet" th:href="@{/css/theme.css}">
+<link rel="stylesheet" th:href="@{/css/answers.css}">
 </head>
+
 <body>
-	<div th:replace="header"></div>
-	<div th:replace="nav"></div>
-	<h2>お題</h2>
-	<div>
-		<img th:src="${theme.imgUrl}" width=300/>
-	</div>
-	<div>
-		<p th:text="${theme.request}"></p>
+	<header th:replace="~{header :: header}"></header>
+	<nav th:replace="~{nav :: nav(page='')}"></nav>
+
+	<div class="theme">
+		<div class="theme-container">
+			<a th:href="@{/theme/{id}(id=${theme.themeId})}">
+				<div class="theme-img">
+					<img th:src="${theme.imgUrl}" />
+				</div>
+				<div class="theme-request">
+					<p th:text="${theme.request}"></p>
+				</div>
+			</a>
+			<div class="download-btn d-flex justify-content-between">
+				<a class="btn btn-primary" th:href="@{/answer/upload?theme={id}(id=${theme.themeId})}">らくがきする</a>
+				<a class="btn btn-primary" th:href="${theme.imgUrl}" download>保存</a>
+			</div>
+		</div>
 	</div>
 
-	<a th:href="@{/answer/upload?theme={id}(id=${theme.themeId})}">回答する</a>
 
-	<div>
-		<h2>回答一覧</h2>
-		<table>
-			<tr><th>ユーザーID</th><th>回答</th><th>画像</th></tr>
-			<tr th:each="answer : ${answers}">
-				<td th:text="${answer.userId}"></td>
-				<td th:text="${answer.description}"></td>
-				<td><img th:src="${answer.imgUrl}" width=300 /></td>
-				<td><a th:href="@{/answer/{id}(id=${answer.answerId})}">詳細</a></td>
-			</tr>
-		</table>
+
+
+	<div class="answers">
+		<div class="answers-container">
+			<div class="answers-title">
+				<p>らくがき一覧</p>
+			</div>
+			<div class="answers-container-inner container">
+				<div class="row">
+
+					<div class="answer col-sm-12 col-md-6 col-lg-4 col-xl-3"
+						th:each="answer : ${answers}">
+						<div class="answer-container">
+							<a th:href="@{/answer/{id}(id=${answer.answerId})}">
+								<div class="answer-img">
+									<img th:src="${answer.imgUrl}" />
+								</div>
+								<div class="answer-description">
+									<p th:text="${answer.description}"></p>
+								</div>
+							</a>
+							<div class="download-btn d-flex justify-content-end">
+								<a class="btn btn-primary" th:href="${answer.imgUrl}" download>保存</a>
+							</div>
+
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
 	</div>
+
 
 </body>
 </html>

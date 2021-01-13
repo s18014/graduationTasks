@@ -1,13 +1,25 @@
-<header>
-	<div class="header-container">
-		<div class="header-container-inner d-flex justify-content-between">
-			<div class="logo align-self-center">
-				<a href="/"> <img th:src="@{/image/logo.png}" alt="" height=25>
-				</a>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>header</title>
+</head>
+<body>
+	<div th:fragment="header" th:remove="tag">
+
+		<header>
+			<div class="header-container">
+				<div class="header-container-inner d-flex justify-content-between">
+					<div class="logo align-self-center">
+						<a href="/"> <img th:src="@{/image/logo.png}" alt="" height=25>
+						</a>
+					</div>
+					<div class="top-menu">
+						<a href="/mypage" class="btn"> マイページ </a>
+					</div>
+				</div>
 			</div>
-			<div class="top-menu">
-				<a href="/mypage" class="btn"> マイページ </a>
-			</div>
-		</div>
+		</header>
+
 	</div>
-</header>
+</body>
+</html>

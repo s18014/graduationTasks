@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title></title>
-	<div th:replace="base"></div>
-	<link rel="stylesheet" th:href="@{/css/answer-form.css}">
+<title></title>
+<head th:replace="~{base :: base}"></head>
+<link rel="stylesheet" th:href="@{/css/answer-form.css}">
 </head>
 <body>
-
-	<div th:replace="header"></div>
-	<div th:replace="nav"></div>
+	<header th:replace="~{header :: header}"></header>
+	<nav th:replace="~{nav :: nav(page='')}"></nav>
 
 	<main class="container">
 		<div class="main-container">
 			<div class="main-cotainer-inner">
 
-				<h2>落書きする</h2>
+				<h2>らくがきする</h2>
 
 				<div class="theme">
 					<div class="theme-container">
 						<div class="preview">
 							<div class="preview-container">
-								<img th:src="${theme.imgUrl}" alt="" style="visibility: visible;">
+								<img th:src="${theme.imgUrl}" alt=""
+									style="visibility: visible;">
 							</div>
 						</div>
 						<div class="request">
 							<p th:text="${theme.request}"></p>
 						</div>
+						<div class="download-btn d-flex justify-content-end">
+							<a class="btn btn-primary" th:href="${theme.imgUrl}" download>保存</a>
+						</div>
 					</div>
 				</div>
-				<div>
-				</div>
+				<div></div>
 
 				<div class="preview">
 					<div class="preview-container">
@@ -38,20 +40,24 @@
 				</div>
 
 				<div>
-					<form class="answer-form" th:action="@{/answer/upload?theme={id}(id=${theme.themeId})}" method="post" enctype="multipart/form-data" th:object="${answerForm}">
+					<form class="answer-form"
+						th:action="@{/answer/upload?theme={id}(id=${theme.themeId})}"
+						method="post" enctype="multipart/form-data"
+						th:object="${answerForm}">
 						<div class="form-group text-center">
-							<label>
-								<span class="btn btn-primary">
-									画像を選択
-									<input type="file" id="inputImage" th:field="*{image}" accept="image/*" style="display: none;" required/>
-								</span>
+							<label> <span class="btn btn-primary"> 画像を選択 <input
+									type="file" id="inputImage" th:field="*{image}"
+									accept="image/*" style="display: none;" required />
+							</span>
 							</label>
 						</div>
 
 						<div class="form-group">
-							<label for="formDescription">説明</label>
-							<span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" style="color: red">error!</span>
-							<input class="form-control" placeholder="説明" id="formDescription" type="text" th:field="*{description}" required/>
+							<label for="formDescription">説明</label> <span
+								th:if="${#fields.hasErrors('description')}"
+								th:errors="*{description}" style="color: red">error!</span> <input
+								class="form-control" placeholder="説明" id="formDescription"
+								type="text" th:field="*{description}" required />
 						</div>
 
 						<div class="form-group">

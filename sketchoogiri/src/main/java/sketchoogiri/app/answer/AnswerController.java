@@ -53,6 +53,14 @@ public class AnswerController {
 		return "answer-form";
 	}
 	
+	@GetMapping("/recent")
+	public String viewRecent(Model model, @RequestParam String page) {
+		model.addAttribute("answers", answerMapper.findAll());
+		return "answers";
+	}
+
+
+
 	@PostMapping("/upload")
 	public String upload(@Validated AnswerForm answerForm,
 			BindingResult bindingResult,

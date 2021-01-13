@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title></title>
-<div th:replace="base"></div>
+<head th:replace="~{base :: base}"></head>
 <link rel="stylesheet" th:href="@{/css/themes.css}">
 </head>
 <body>
-	<div th:replace="header"></div>
-	<div th:replace="nav"></div>
+	<header th:replace="~{header :: header}"></header>
+	<nav th:replace="~{nav :: nav(page='themes')}"></nav>
 
 	<main class="container">
 		<div class="main-container">

@@ -58,7 +58,7 @@ public class ThemeController {
 	}
 	
 	@GetMapping("/recent")
-	public String viewResently(Model model,
+	public String viewRecent(Model model,
 			@RequestParam String page) {
 		model.addAttribute("themes", themeMapper.findAll());
 		return "themes";

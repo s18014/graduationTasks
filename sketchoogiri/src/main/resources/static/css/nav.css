@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 nav a {
-  color: #792a00;
+  color: #aaaaaa;
   font-weight: bold;
 }
 
@@ -30,4 +30,8 @@ nav .nav-item:hover {
 .nav-link {
   padding-left: 0;
   padding-right: 0;
+}
+
+.active a {
+  color: #792a00;
 }

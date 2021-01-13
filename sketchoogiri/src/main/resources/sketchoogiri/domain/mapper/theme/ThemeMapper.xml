@@ -11,6 +11,7 @@
         	img_url,
         	posted_time
         from theme
+        order by theme_id desc
     </select>
     
     <select id="findByThemeId" resultMap="themeResultMap">

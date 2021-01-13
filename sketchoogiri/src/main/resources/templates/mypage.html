@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title></title>
-	<div th:replace="base"></div>	
+<title></title>
+<head th:replace="~{base :: base}"></head>
 </head>
 <body>
-	<div th:replace="header"></div>
-	<div th:replace="nav"></div>
+	<header th:replace="~{header :: header}"></header>
+	<nav th:replace="~{nav :: nav(page='')}"></nav>
+
 	<h2>My page</h2>
 	<p>ようこそ<span th:text="${loginUser.name}"></span>さん</p>
 	<a th:href="@{/theme/upload}">投稿</a>
