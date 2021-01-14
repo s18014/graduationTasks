@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +24,7 @@ import sketchoogiri.domain.mapper.user.UserMapper;
 import sketchoogiri.domain.model.Answer;
 import sketchoogiri.domain.model.User;
 import sketchoogiri.domain.service.storage.StorageService;
+import sketchoogiri.domain.service.user.MyUserDetails;
 
 @Controller
 @RequestMapping("/answer")
@@ -63,7 +65,8 @@ public class AnswerController {
 	}
 
 	@GetMapping("/upload")
-	public String form(Model model, @RequestParam("theme") String id) {
+	public String form(Model model,
+			@RequestParam("theme") String id) {
 		model.addAttribute("theme", themeMapper.findByThemeId(Integer.parseInt(id)));
 		return "answer-form";
 	}
@@ -72,6 +75,7 @@ public class AnswerController {
 	public String upload(@Validated AnswerForm answerForm,
 			BindingResult bindingResult,
 			Model model,
+			@AuthenticationPrincipal MyUserDetails myUserDetails,
 			@RequestParam("theme") String id) {
 		if (bindingResult.hasErrors()) {
 			return form(model, id);
@@ -81,7 +85,7 @@ public class AnswerController {
 		try {
 			path = storageService.store(image.getOriginalFilename(), image.getContentType(), image.getBytes());
 			Answer answer = new Answer();
-			answer.setUserId(dummyUser().getUserId());
+			answer.setUserId(myUserDetails.getUser().getUserId());
 			answer.setThemeId(Integer.parseInt(id));
 			answer.setDescription(answerForm.getDescription());
 			answer.setImgUrl("/images/" + path.getFileName().toString());

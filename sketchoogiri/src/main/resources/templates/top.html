@@ -7,44 +7,14 @@
 <body>
 	<header th:replace="~{header :: header}"></header>
 	<nav th:replace="~{nav :: nav(page='top')}"></nav>
-	<div>
-		<h2>お題一覧</h2>
-		<table>
-			<tr><th>ユーザーID</th><th>お題</th><th>画像</th></tr>
-			<tr th:each="theme : ${themeAll}">
-				<td th:text="${theme.userId}"></td>
-				<td th:text="${theme.request}"></td>
-				<td><img th:src="${theme.imgUrl}" width=300 /></td>
-				<td><a th:href="@{/theme/{id}(id=${theme.themeId})}">詳細</a></td>
-			</tr>
-		</table>
-	</div>
-	
-	<div>
-		<h2>回答一覧</h2>
-		<table>
-			<tr><th>ユーザーID</th><th>お題</th><th>画像</th></tr>
-			<tr th:each="answer : ${answerAll}">
-				<td th:text="${answer.userId}"></td>
-				<td th:text="${answer.description}"></td>
-				<td><img th:src="${answer.imgUrl}" width=300 /></td>
-				<td><a th:href="@{/answer/{id}(id=${answer.answerId})}">詳細</a></td>
-			</tr>
-		</table>
-	</div>
-	
-	
-	<div>
-		<h2>ユーザー一覧</h2>
-		<table>
-			<tr><th>ユーザーID</th><th>名前</th></tr>
-			<tr th:each="user : ${userAll}">
-				<td th:text="${user.userId}"></td>
-				<td th:text="${user.name}"></td>
-			</tr>
-		</table>
-	</div>
-
-	
+	<main class="container">
+		<div class="main-container">
+			<div class="main-container-inner">
+				<p>お絵描き大喜利！お題に落書きして遊ぼう！</p>
+				<p>遊び方説明</p>
+				<p>締めの一言</p>
+			</div>
+		</div>
+	</main>
 </body>
 </html>

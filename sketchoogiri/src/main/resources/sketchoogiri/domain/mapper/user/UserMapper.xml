@@ -21,6 +21,12 @@
         from usr
         where user_id = #{userId}
     </select>
+
+    <insert id="create" parameterType="User">
+    	insert into usr (user_id, name, password, role)
+    	values (#{userId}, #{name}, #{password}, #{role})
+    </insert>
+  
     
    	<resultMap id="userResultMap" type="sketchoogiri.domain.model.User">
 		<id property="userId" column="user_id" />

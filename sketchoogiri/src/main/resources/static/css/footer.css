@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+footer {
+	margin-top: 150px;
+	padding: 30px;
+}
+
+.supporters-title {
+	padding: 10px;
+	margin: auto;
+	font-size: 18px;
+  	color: #792a00;
+  	border-bottom: 2px solid #792a00;
+  	width: 200px;
+  	text-align: center;
+}
+
+.supporters {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.supporter {
+	padding: 15px;
+}
+
+footer img {
+	display: block;
+	border-radius: 50%;
+	border: 3px solid #ffffff;
+	width: 150px;
+	height: 150px;
+	margin: auto;
+}
+

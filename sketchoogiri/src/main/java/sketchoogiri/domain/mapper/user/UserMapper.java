@@ -10,4 +10,5 @@ import sketchoogiri.domain.model.User;
 public interface UserMapper {
 	public User findByUserId(String userId);
 	public List<User> findAll();
+	public void create(User user);
 }

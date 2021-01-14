@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <title>header</title>
 </head>
@@ -14,7 +15,8 @@
 						</a>
 					</div>
 					<div class="top-menu">
-						<a href="/mypage" class="btn"> マイページ </a>
+						<a href="/mypage" class="btn" sec:authorize="isFullyAuthenticated()">マイページ</a>
+						<a href="/loginForm" class="btn" sec:authorize="!isFullyAuthenticated()">ログイン</a>
 					</div>
 				</div>
 			</div>

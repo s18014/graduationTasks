@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Base64Utils;
@@ -25,6 +26,7 @@ import sketchoogiri.domain.mapper.user.UserMapper;
 import sketchoogiri.domain.model.Theme;
 import sketchoogiri.domain.model.User;
 import sketchoogiri.domain.service.storage.StorageService;
+import sketchoogiri.domain.service.user.MyUserDetails;
 
 @Controller
 @RequestMapping("/theme")
@@ -85,6 +87,7 @@ public class ThemeController {
 	@PostMapping("/upload")
 	public String post(@Validated ThemeForm themeForm,
 			BindingResult bindingResult,
+			@AuthenticationPrincipal MyUserDetails myUserDetails,
 			SessionStatus sessionStatus,
 			Model model) {
 		if (bindingResult.hasErrors()) {
@@ -95,7 +98,7 @@ public class ThemeController {
 		try {
 			path = storageService.store(image.getOriginalFilename(), image.getContentType(), image.getBytes());
 			Theme theme = new Theme();
-			theme.setUserId(dummyUser().getUserId());
+			theme.setUserId(myUserDetails.getUser().getUserId());
 			theme.setRequest(themeForm.getRequest());
 			theme.setImgUrl("/images/" + path.getFileName().toString());
 			themeMapper.create(theme);

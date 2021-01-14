@@ -13,12 +13,17 @@
 
 	<main class="container">
 		<div class="main-container">
-			<div class="main-cotainer-inner">
+			<div class="main-container-inner">
 				<div class="user-info-container">
 					<div class="user-info-container-inner container">
 						<p class="username" th:text="${loginUser.name}"></p>
-						<div class="upload-botton d-flex justify-content-center">
+						<div class="upload-button d-flex justify-content-center">
 							<a class="btn-lg btn-success" th:href="@{/theme/upload}">お題を投稿</a>
+						</div>
+						<div class="logout-button d-flex justify-content-center">
+							<form th:action="@{/logout}" method="post">
+								<button class="btn btn-light">ログアウト</button>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -59,5 +64,6 @@
 			</div>
 		</div>
 	</main>
+	<footer th:replace="~{footer :: footer}"></footer>
 </body>
 </html>
