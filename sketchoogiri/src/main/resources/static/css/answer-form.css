@@ -1,24 +1,24 @@
 @charset "utf-8";
 
 .theme-container {
-  padding-top: 30px;
-  padding-bottom: 30px;
-  border-bottom: solid 1px #eeeeee;
-  max-width: 600px;
-  margin: auto;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	border-bottom: solid 1px #eeeeee;
+	max-width: 600px;
+	margin: auto;
 }
 
 .preview {
-  padding: 30px;
+	padding: 30px;
 }
 
 .preview-container {
-  background-color: #eeeeee;
-  min-width: 150px;
-  max-width: 480px;
-  height: 250px;
-  width: 100%;
-  margin: auto;
+	background-color: #eeeeee;
+	min-width: 150px;
+	max-width: 480px;
+	height: 250px;
+	width: 100%;
+	margin: auto;
 }
 
 .preview-container img {
@@ -29,17 +29,21 @@
 }
 
 .answer-form {
-  max-width: 600px;
-  margin: auto;
+	max-width: 500px;
+	margin: auto;
+}
+
+.theme-info {
+	max-width: 500px;
+	margin: auto;
 }
 
 .request {
-  text-align: center;
+	text-align: center;
 }
 
-.main-container {
+.main-container-inner {
 	background-color: #ffffff;
 	padding: 20px;
 	min-height: 1000px;
 }
-

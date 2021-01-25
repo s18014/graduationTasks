@@ -9,9 +9,9 @@
 	<header th:replace="~{header :: header}"></header>
 	<nav th:replace="~{nav :: nav(page='')}"></nav>
 
-	<main class="container">
+	<main>
 		<div class="main-container">
-			<div class="main-container-inner">
+			<div class="main-container-inner container">
 
 				<h2>らくがきする</h2>
 
@@ -23,11 +23,16 @@
 									style="visibility: visible;">
 							</div>
 						</div>
-						<div class="request">
-							<p th:text="${theme.request}"></p>
-						</div>
-						<div class="download-btn d-flex justify-content-end">
-							<a class="btn btn-primary" th:href="${theme.imgUrl}" download>保存</a>
+						<div class="theme-info">
+							<div class="request">
+								<p th:text="${theme.request}"></p>
+							</div>
+							<div class="download-btn d-flex justify-content-between">
+								<a class="btn btn-primary"
+									th:href="@{/sketch?redirect-url=/answer/upload?theme={id}&img={url}(id=${theme.themeId}, url=${theme.imgUrl})}">お絵描き</a>
+
+								<a class="btn btn-primary" th:href="${theme.imgUrl}" download>保存</a>
+							</div>
 						</div>
 					</div>
 				</div>

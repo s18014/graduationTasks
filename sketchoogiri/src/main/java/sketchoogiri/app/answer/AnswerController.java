@@ -80,9 +80,9 @@ public class AnswerController {
 		if (bindingResult.hasErrors()) {
 			return form(model, id);
 		}
-		MultipartFile image = answerForm.getImage();
-		Path path;
 		try {
+			MultipartFile image = answerForm.getImage();
+			Path path;
 			path = storageService.store(image.getOriginalFilename(), image.getContentType(), image.getBytes());
 			Answer answer = new Answer();
 			answer.setUserId(myUserDetails.getUser().getUserId());

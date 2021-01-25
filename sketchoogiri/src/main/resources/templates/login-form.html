@@ -8,9 +8,9 @@
 <body>
 	<header th:replace="~{header :: header}"></header>
 	<nav th:replace="~{nav :: nav(page='top')}"></nav>
-	<main class="container">
+	<main>
 		<div class="main-container">
-			<div class="main-container-inner">
+			<div class="main-container-inner container">
 				<P th:if="${param.error}">Error!</P>
 				<div class="login-form">
 					<form th:action="@{login}" method="post">

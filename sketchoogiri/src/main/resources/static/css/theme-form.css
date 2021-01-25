@@ -21,11 +21,11 @@
 }
 
 .theme-form {
-	max-width: 300px;
+	max-width: 500px;
 	margin: auto;
 }
 
-.main-container {
+.main-container-inner {
 	background-color: #ffffff;
 	padding: 20px;
 	min-height: 1000px;

@@ -12,6 +12,7 @@
     <main>
       <div id="canvas-container">
       <div id="canvas-wrapper">
+              <canvas id="viewOriginalImage"></canvas>
       </div>
       </div>
       <img id="preview"/>
@@ -88,6 +89,16 @@
           </div>
         </div>
       </div>
+      
+      <div id="top-menu">
+        <div id="palette-eraser-menu-container" class="top-menu-container">
+          <div class="top-menu-icon">
+            <label for="palette-eraser-thickness">8px</label>
+            <input type="range" id="palette-eraser-thickness" min="1" value="8" style="width:150px;height:25px;padding:0px;margin:0px;" step="1" max="120">
+          </div>
+        </div>
+      </div>
+      
     </main>
 
     <script src="js/pickr.es5.min.js"></script>

@@ -9,15 +9,15 @@
 	<header th:replace="~{header :: header}"></header>
 	<nav th:replace="~{nav :: nav(page='themes')}"></nav>
 
-	<main class="container">
+	<main>
 		<div class="main-container">
 			<div class="main-container-inner">
 				<div class="themes">
 					<div class="themes-container">
-						<div class="themes-container-inner container">
+						<div class="themes-container-inner container-fluid">
 							<div class="row">
 
-								<div class="theme col-sm-12 col-md-6 col-lg-4 col-xl-3"
+								<div class="theme col-12 col-md-6 col-lg-4 col-xl-3"
 									th:each="theme : ${themes}">
 									<div class="theme-container">
 										<a th:href="@{/theme/{id}(id=${theme.themeId})}">

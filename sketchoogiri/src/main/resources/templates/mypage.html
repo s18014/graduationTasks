@@ -11,11 +11,12 @@
 	<header th:replace="~{header :: header}"></header>
 	<nav th:replace="~{nav :: nav(page='')}"></nav>
 
-	<main class="container">
+	<main>
 		<div class="main-container">
 			<div class="main-container-inner">
 				<div class="user-info-container">
 					<div class="user-info-container-inner container">
+						<p>ようこそ ^_^</p>
 						<p class="username" th:text="${loginUser.name}"></p>
 						<div class="upload-button d-flex justify-content-center">
 							<a class="btn-lg btn-success" th:href="@{/theme/upload}">お題を投稿</a>
@@ -33,10 +34,10 @@
 						<div class="themes-title">
 							<p>投稿したお題一覧</p>
 						</div>
-						<div class="themes-container-inner container">
+						<div class="themes-container-inner container-fluid">
 							<div class="row">
 
-								<div class="theme col-sm-12 col-md-6 col-lg-4 col-xl-3"
+								<div class="theme col-12 col-md-6 col-lg-4 col-xl-3"
 									th:each="theme : ${themes}">
 									<div class="theme-container">
 										<a th:href="@{/theme/{id}(id=${theme.themeId})}">

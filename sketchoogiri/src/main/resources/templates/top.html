@@ -3,18 +3,76 @@
 <head>
 <title></title>
 <head th:replace="~{base :: base}"></head>
+<link rel="stylesheet" th:href="@{/css/top.css}">
 </head>
 <body>
 	<header th:replace="~{header :: header}"></header>
 	<nav th:replace="~{nav :: nav(page='top')}"></nav>
-	<main class="container">
+	<main>
 		<div class="main-container">
 			<div class="main-container-inner">
-				<p>お絵描き大喜利！お題に落書きして遊ぼう！</p>
+				<div class="first-view">
+					<div class="first-view-bg">
+						<div class="first-view-front">
+							<p>らくがき大喜利！</p>
+							<p>お題にらくがきして遊ぼう！</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="descriptions-title">
 				<p>遊び方説明</p>
-				<p>締めの一言</p>
+			</div>
+			<div class="descriptions-container">
+				<div class="container-fluid">
+					<div class="row">
+
+						<div class="description col-12 col-lg-4">
+							<div class="description-container">
+								<div class="description-title">
+									<p>ステップ１</p>
+								</div>
+								<div class="d-flex flex-column">
+									<p>説明</p>
+									<p>説明</p>
+									<p>説明</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="description col-12 col-lg-4">
+							<div class="description-container">
+								<div class="description-title">
+									<p>ステップ１</p>
+								</div>
+								<div class="d-flex flex-column">
+									<p>説明</p>
+									<p>説明</p>
+									<p>説明</p>
+								</div>
+							</div>
+						</div>
+						<div class="description col-12 col-lg-4">
+							<div class="description-container">
+								<div class="description-title">
+									<p>ステップ１</p>
+								</div>
+								<div class="d-flex flex-column">
+									<p>説明</p>
+									<p>説明</p>
+									<p>説明</p>
+								</div>
+							</div>
+						</div>
+
+
+
+
+					</div>
+				</div>
 			</div>
 		</div>
 	</main>
+	<footer th:replace="~{footer :: footer}"></footer>
 </body>
 </html>
