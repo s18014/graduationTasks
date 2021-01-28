@@ -36,15 +36,29 @@
   	text-align: center;
 }
 
-.description {
-	padding: 20px;
-}
-
 .description-container {
 	padding: 20px;
-	height: 300px;
 	margin-top: 20px;
-	background-color: #ffffff;
+}
+
+.description-title {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: 18px;
+  	color: #792a00;
+  	font-weight: bold;
+}
+
+.description-contents p {
+	padding-top: 3px;
+	padding-bottom: 3px;
+  	color: #444444;
+  	padding-left: 1em;
+  	text-indent: -1em;
+}
+
+.description-contents p::before {
+	content: "★";
 }
 
 @media screen and (max-width:768px) { 
